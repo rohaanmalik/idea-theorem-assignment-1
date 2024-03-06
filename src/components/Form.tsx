@@ -1,7 +1,11 @@
 import { useForm, Controller } from 'react-hook-form';
 import { TextField, Button, Box, Typography, FormLabel, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { validationSchema } from '../validation';
+import { z } from 'zod';
 
 
+type ValidationSchema = z.infer<typeof validationSchema>
 
 export default function Form() {
   const {
@@ -9,12 +13,16 @@ export default function Form() {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm({});
+  } = useForm<ValidationSchema>({
+    resolver: zodResolver(validationSchema),
+  });
 
   const onSubmit = (data) => {
     console.log("Form data");
     console.log(data);
   };
+
+  console.log(errors)
 
   return (
     <Box sx={{ width: { xs: "100vw", sm: "35vw" }, margin: "auto" }}>
@@ -117,7 +125,7 @@ export default function Form() {
                   <Controller
                     name="day"
                     control={control}
-                    defaultValue=""
+                    defaultValue={1}
                     render={({ field }) => (
                       <Select {...field}
                       >
@@ -142,7 +150,7 @@ export default function Form() {
                   <Controller
                     name="month"
                     control={control}
-                    defaultValue=""
+                    defaultValue="January"
                     render={({ field }) => (
                       <Select {...field}>
                         {/* Generate month options */}
@@ -178,7 +186,7 @@ export default function Form() {
                   <Controller
                     name="year"
                     control={control}
-                    defaultValue=""
+                    defaultValue={1901}
                     render={({ field }) => (
                       <Select {...field}>
                         {/* Generate year options */}
