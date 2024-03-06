@@ -9,9 +9,20 @@ const LogoImage = styled('img')({
 
 function Header() {
   return (
-    <AppBar position="fixed" sx={{ bgcolor: '#252F3D', height: '56.83px', px: 2, md: { px: 0 } }}>
+    <AppBar
+      position="fixed"
+      sx={{ bgcolor: "#252F3D", height: "56.83px", px: 2, md: { px: 0 } }}
+    >
       <Toolbar>
-        <Box sx={{ mx: 'auto', maxWidth: '6xl', height: '100%', display: 'flex', alignItems: 'center' }}>
+        <Box
+          sx={{
+            mx: "auto",
+            maxWidth: "6xl",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <LogoImage src={Logo} alt="logo" />
         </Box>
       </Toolbar>
