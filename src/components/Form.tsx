@@ -1,5 +1,5 @@
 import { useForm, Controller } from 'react-hook-form';
-import { TextField, Button, Box, Typography, FormLabel, Select, MenuItem } from '@mui/material';
+import { TextField, Button, Box, Typography, FormLabel, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 
 
 
@@ -17,19 +17,12 @@ export default function Form() {
   };
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-    >
+    <Box sx={{ width: { xs: "100vw", sm: "35vw" }, margin: "auto" }}>
       <Box
-        pt={14}
-        mx="auto"
-        width="100%"
-        maxWidth="sm"
-        px={{ xs: 2, md: 0 }}
-        py={{ xs: 4, md: 0 }}
+        p={3}
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
       >
         <Typography variant="h6" fontWeight="bold" align="left" mb={3}>
           Create User Account
@@ -45,7 +38,6 @@ export default function Form() {
             display="flex"
             flexDirection="column"
             gap={2}
-            justifyContent="space-between"
           >
             <Controller
               name="fullName"
@@ -107,108 +99,100 @@ export default function Form() {
               )}
             />
 
-            <Controller
-              name="birthdayDate"
-              control={control}
-              defaultValue={{ day: "", month: "", year: "" }}
-              render={({ field }) => (
-                <Box
-                  display="flex"
-                  flexDirection="column"
-                  alignItems="flex-start"
+            <Box display="flex" flexDirection="column" alignItems="flex-start">
+              <FormLabel
+                component="legend"
+                sx={{ fontWeight: "bold", color: "#252F3D", mb: 2 }}
+              >
+                Birthday Date
+              </FormLabel>
+              <Box display="flex" justifyContent="space-between" width="100%">
+                <FormControl
+                  sx={{
+                    width: "33%",
+                    mr: 2,
+                  }}
                 >
-                  <FormLabel
-                    component="legend"
-                    sx={{ fontWeight: "bold", color: "#252F3D", mb: 2 }}
-                  >
-                    Birthday Date
-                  </FormLabel>
-                  <Box
-                    display="flex"
-                    justifyContent="space-between"
-                    width="100%"
-                  >
-                    <Controller
-                      name="day"
-                      control={control}
-                      defaultValue=""
-                      render={({ field }) => (
-                        <Select
-                          {...field}
-                          sx={{
-                            width: "33%",
-                            mr: 2,
-                          }}
-                        >
-                          {/* Generate day options */}
-                          {[...Array(31)].map((_, i) => (
-                            <MenuItem key={i} value={i + 1}>
-                              {i + 1}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      )}
-                    />
+                  <InputLabel id="day">Day</InputLabel>
+                  <Controller
+                    name="day"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <Select {...field}
+                      >
+                        {/* Generate day options */}
+                        {[...Array(31)].map((_, i) => (
+                          <MenuItem key={i} value={i + 1}>
+                            {i + 1}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                </FormControl>
 
-                    <Controller
-                      name="month"
-                      control={control}
-                      defaultValue=""
-                      render={({ field }) => (
-                        <Select
-                          {...field}
-                          sx={{
-                            width: "33%",
-                            mr: 2,
-                          }}
-                        >
-                          {/* Generate month options */}
-                          {[
-                            "January",
-                            "February",
-                            "March",
-                            "April",
-                            "May",
-                            "June",
-                            "July",
-                            "August",
-                            "September",
-                            "October",
-                            "November",
-                            "December",
-                          ].map((month, i) => (
-                            <MenuItem key={i} value={month}>
-                              {month}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      )}
-                    />
-
-                    <Controller
-                      name="year"
-                      control={control}
-                      defaultValue=""
-                      render={({ field }) => (
-                        <Select
-                          {...field}
-                          sx={{
-                            width: "33%",
-                          }}
-                        >
-                          {/* Generate year options */}
-                          {[...Array(121)].map((_, i) => (
-                            <MenuItem key={i} value={i + 1900}>
-                              {i + 1900}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      )}
-                    />
-                  </Box>
-                </Box>
-              )}
-            />
+                <FormControl
+                  sx={{
+                    width: "33%",
+                    mr: 2,
+                  }}
+                >
+                  <InputLabel id="month">Month</InputLabel>
+                  <Controller
+                    name="month"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <Select {...field}>
+                        {/* Generate month options */}
+                        {[
+                          "January",
+                          "February",
+                          "March",
+                          "April",
+                          "May",
+                          "June",
+                          "July",
+                          "August",
+                          "September",
+                          "October",
+                          "November",
+                          "December",
+                        ].map((month, i) => (
+                          <MenuItem key={i} value={month}>
+                            {month}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                </FormControl>
+                <FormControl
+                  sx={{
+                    width: "33%",
+                    mr: 2,
+                  }}
+                >
+                  <InputLabel id="year">Year</InputLabel>
+                  <Controller
+                    name="year"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <Select {...field}>
+                        {/* Generate year options */}
+                        {[...Array(121)].map((_, i) => (
+                          <MenuItem key={i} value={i + 1900}>
+                            {i + 1900}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                </FormControl>
+              </Box>
+            </Box>
             <Controller
               name="emailAddress"
               control={control}
@@ -299,7 +283,6 @@ export default function Form() {
               )}
             />
           </Box>
-
           <Box mt={2} display="flex" justifyContent="center" gap={2}>
             <Button
               variant="outlined"

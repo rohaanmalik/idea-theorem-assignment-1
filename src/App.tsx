@@ -6,10 +6,20 @@ import Header from './components/Header'
 function App() {
   return (
     <Box
-      sx={{ position: "relative", display: "flex", flexDirection: "column" }}
+      sx={{
+        position: "relative",
+        height: "100vh",
+      }}
     >
       <Header />
-      <Box sx={{ mt: '56.83px' }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: { md: "100%" },
+        }}
+      >
         <Form />
       </Box>
     </Box>
