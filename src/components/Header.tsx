@@ -16,13 +16,19 @@ function Header() {
       <Toolbar>
         <Box
           sx={{
-            ml: 10,
-            height: "100%",
             display: "flex",
-            alignItems: "center",
+            alignItems: "start",
+            justifyContent: "start",
           }}
         >
-          <LogoImage src={Logo} alt="logo" />
+          <LogoImage
+            src={Logo}
+            alt="logo"
+            sx={{
+              width: { xs: "70%", sm: "100%" },
+              height: "auto",
+            }}
+          />
         </Box>
       </Toolbar>
     </AppBar>
