@@ -16,8 +16,7 @@ function Header() {
       <Toolbar>
         <Box
           sx={{
-            mx: "auto",
-            maxWidth: "6xl",
+            ml: 10,
             height: "100%",
             display: "flex",
             alignItems: "center",
