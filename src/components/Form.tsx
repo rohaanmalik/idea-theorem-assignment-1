@@ -198,7 +198,13 @@ export default function Form() {
                       control={control}
                       defaultValue={1}
                       render={({ field }) => (
-                        <TextField label="Day *" select {...field}>
+                        <TextField
+                          label="Day *"
+                          select
+                          error={!!errors.day}
+                          helperText={errors.day?.message}
+                          {...field}
+                        >
                           {/* Generate day options */}
                           {[...Array(31)].map((_, i) => (
                             <MenuItem key={i} value={i + 1}>
@@ -248,7 +254,6 @@ export default function Form() {
                   <FormControl
                     sx={{
                       width: "33%",
-                      mr: 2,
                     }}
                   >
                     <Controller

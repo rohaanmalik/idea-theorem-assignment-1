@@ -19,7 +19,7 @@ const validationSchema = z
       .string()
       .min(1, "Contact Number is required")
       .regex(
-        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/,
         "Contact Number must be in a Canadian phone number format like xxx-xxx-xxxx"
       ),
     emailAddress: z
@@ -58,8 +58,8 @@ const validationSchema = z
   .refine(
     (data) => {
       const monthIndex = monthNames.indexOf(data.month);
-      const date = new Date(data.year, monthIndex, data.day);
-      return date.getMonth() === monthIndex;
+      const date = new Date(data.year, monthIndex + 1, 0); // Get the last day of the selected month
+      return data.day <= date.getDate(); // Check if the selected day is less than or equal to the last day of the selected month
     },
     {
       message: "Invalid date",
