@@ -38,7 +38,15 @@ const validationSchema = z
       .number()
       .min(1, "Day must be at least 1")
       .max(31, "Day must be no more than 31"),
-    month: z.enum(monthNames, "Invalid month name"),
+    month: z
+      .string({
+        // Not empty
+        required_error: "month is required",
+      })
+      // Not empty , (Jan ... Dec)
+      .min(3, {
+        message: "month is required",
+      }),
     year: z
       .number()
       .min(earliestYear, `Year must not be before ${earliestYear}`),

@@ -1,10 +1,10 @@
-import { useForm, Controller } from 'react-hook-form';
-import { TextField, Button, Box, Typography, FormLabel, Select, MenuItem, InputLabel, FormControl, useMediaQuery } from '@mui/material';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { validationSchema } from '../validation';
-import { z } from 'zod';
-import Alert, { AlertStatus } from './Alert';
+import { Box, Button, FormControl, FormLabel, MenuItem, TextField, Typography, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { validationSchema } from '../validation';
+import Alert, { AlertStatus } from './Alert';
 
 
 type ValidationSchema = z.infer<typeof validationSchema>
@@ -36,7 +36,16 @@ export default function Form() {
     }, 3000);
   }
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: {
+    fullName: string;
+    contactNumber: string;
+    day: number;
+    month: string;
+    year: number;
+    emailAddress: string;
+    password: string;
+    confirmPassword: string;
+  }) => {
     try {
       setAlertStatus("success");
       setAlertMessage("");
@@ -48,28 +57,25 @@ export default function Form() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(
-            {
-              "full_name": data.fullName,
-              "contact_number": data.contactNumber,
-              "email": data.emailAddress,
-              "password": data.password,
-              "date_of_birth": `${data.year}-${data.month}-${data.day}`
-            }
-          ),
+          body: JSON.stringify({
+            full_name: data.fullName,
+            contact_number: data.contactNumber,
+            email: data.emailAddress,
+            password: data.password,
+            date_of_birth: `${data.year}-${data.month}-${data.day}`,
+          }),
         }
       );
 
       // if the request is successful
       if (response.ok) {
-        setUpAlert("success","User account successfully created.");
-      }
-      else {
-        setUpAlert("error","There was an error creating the account.");
+        setUpAlert("success", "User account successfully created.");
+      } else {
+        setUpAlert("error", "There was an error creating the account.");
       }
     } catch (error) {
       console.error("Error:", error);
-      setUpAlert("error","There was an error creating the account.");
+      setUpAlert("error", "There was an error creating the account.");
     }
   };
 
