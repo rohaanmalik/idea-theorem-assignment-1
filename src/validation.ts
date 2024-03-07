@@ -4,8 +4,8 @@ import { z } from 'zod';
 export const earliestYear = 1930;
 /** Full names of months */
 export const monthNames = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
 ];
 
 const validationSchema = z
@@ -24,7 +24,7 @@ const validationSchema = z
       ),
     emailAddress: z
       .string()
-      .min(1, "Email is required")
+      .min(1, "Sorry, this email address is not valid. Please try again.")
       .email("Invalid email format"),
     password: z
       .string()

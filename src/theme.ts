@@ -1,6 +1,11 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
+  typography: {
+    allVariants: {
+      color: '#333333',
+    },
+  },
   palette: {
     primary: {
       main: '#127C95',
@@ -17,9 +22,6 @@ const theme = createTheme({
     background: {
       default: '#F5F5F5',
     },
-    // alertError: {
-    //   main: '#FFC0C0',
-    // },
   },
 });
 

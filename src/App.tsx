@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import './App.css'
 import Form from './components/Form';
 import Header from './components/Header'
 
@@ -12,16 +11,7 @@ function App() {
       }}
     >
       <Header />
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: { md: "100%" },
-        }}
-      >
         <Form />
-      </Box>
     </Box>
   );
 }
