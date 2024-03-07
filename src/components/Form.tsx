@@ -1,5 +1,5 @@
 import { useForm, Controller } from 'react-hook-form';
-import { TextField, Button, Box, Typography, FormLabel, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import { TextField, Button, Box, Typography, FormLabel, Select, MenuItem, InputLabel, FormControl, useMediaQuery } from '@mui/material';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { validationSchema } from '../validation';
 import { z } from 'zod';
@@ -10,6 +10,9 @@ import { useState } from 'react';
 type ValidationSchema = z.infer<typeof validationSchema>
 
 export default function Form() {
+
+  const isMobile = useMediaQuery('(max-width:600px)');
+
   const {
     control,
     handleSubmit,
@@ -81,24 +84,31 @@ export default function Form() {
       }}
     >
       {alertMessage && <Alert status={alertStatus}>{alertMessage}</Alert>}
-      <Box sx={{ width: { xs: "100vw", sm: "35vw" }, margin: "auto" }}>
+      <Box sx={{ width: isMobile ? "100vw" : "35vw", margin: "auto" }}>
         <Box
           p={3}
+          bgcolor={isMobile ? "white" : "grey.100"}
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
         >
-          <Typography variant="h6" fontWeight="bold" align="left" mb={3}>
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            align="left"
+            mb={3}
+            sx={{ pt: isMobile ? 5 : 0 }} // Add top padding on mobile devices
+          >
             Create User Account
           </Typography>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box
               bgcolor="white"
-              border={1}
+              border={1} // Remove the border on mobile devices
               borderColor="grey.200"
               borderRadius="borderRadius"
-              boxShadow={1}
+              boxShadow={isMobile ? 0 : 1} // Remove the box shadow on mobile devices
               p={3}
               display="flex"
               flexDirection="column"
@@ -340,13 +350,19 @@ export default function Form() {
                 )}
               />
             </Box>
-            <Box mt={3} display="flex" justifyContent="center" gap={2}>
+            <Box
+              mt={3}
+              display="flex"
+              justifyContent="center"
+              gap={2}
+              flexDirection={isMobile ? "column" : "row"} // Adjust the direction based on the screen size
+            >
               <Button
                 variant="outlined"
                 color="secondary"
                 size="large"
                 sx={{
-                  width: "25%",
+                  width: isMobile ? "100%" : "25%", // Adjust the width based on the screen size
                   fontWeight: "bold",
                   borderRadius: "borderRadius",
                   "&:hover": {
@@ -366,7 +382,7 @@ export default function Form() {
                 size="large"
                 sx={{
                   color: "white",
-                  width: "25%",
+                  width: isMobile ? "100%" : "25%",
                   fontWeight: "bold",
                   borderRadius: "borderRadius",
                   "&:focus": {
