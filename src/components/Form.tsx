@@ -40,7 +40,6 @@ export default function Form() {
     try {
       setAlertStatus("success");
       setAlertMessage("");
-      console.log("in ", data)
       // post request to the server
       const response = await fetch(
         "https://fullstack-test-navy.vercel.app/api/users/create",
