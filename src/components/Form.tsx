@@ -80,23 +80,19 @@ export default function Form() {
         height: { md: "100%" },
       }}
     >
-      { alertMessage &&
-        <Alert status={alertStatus}>{alertMessage}</Alert>}
+      {alertMessage && <Alert status={alertStatus}>{alertMessage}</Alert>}
       <Box sx={{ width: { xs: "100vw", sm: "35vw" }, margin: "auto" }}>
-
         <Box
           p={3}
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
         >
-
           <Typography variant="h6" fontWeight="bold" align="left" mb={3}>
             Create User Account
           </Typography>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-
             <Box
               bgcolor="white"
               border={1}
@@ -126,7 +122,6 @@ export default function Form() {
                     </FormLabel>
                     <TextField
                       {...field}
-                      id="outlined-required"
                       label="Full Name *"
                       error={!!errors.fullName}
                       {...register("fullName")}
@@ -155,7 +150,6 @@ export default function Form() {
                     </FormLabel>
                     <TextField
                       {...field}
-                      id="outlined-required"
                       label="Contact Number"
                       error={!!errors.contactNumber}
                       {...register("contactNumber")}
@@ -247,10 +241,10 @@ export default function Form() {
                       control={control}
                       defaultValue={1950}
                       render={({ field }) => (
-                        <TextField select label="Year *"{...field}>                          
-                        {/* Generate year options */}
+                        <TextField select label="Year *" {...field}>
+                          {/* Generate year options */}
                           {[...Array(74)].map((_, i) => (
-                            <MenuItem key={i} value={i + 1950}>
+                            <MenuItem key={i + 1950} value={i + 1950}>
                               {i + 1950}
                             </MenuItem>
                           ))}
@@ -272,13 +266,12 @@ export default function Form() {
                   >
                     <FormLabel
                       component="legend"
-                      sx={{ fontWeight: "bold", color: "#252F3D", mb: 2 }}
+                      sx={{ fontWeight: "bold", mb: 2 }}
                     >
                       Email Address
                     </FormLabel>
                     <TextField
                       {...field}
-                      id="outlined-required"
                       label="Email Address *"
                       error={!!errors.emailAddress}
                       {...register("emailAddress")}
@@ -292,6 +285,7 @@ export default function Form() {
               <Controller
                 name="password"
                 control={control}
+                defaultValue=""
                 render={({ field }) => (
                   <Box
                     display="flex"
@@ -300,7 +294,7 @@ export default function Form() {
                   >
                     <FormLabel
                       component="legend"
-                      sx={{ fontWeight: "bold", color: "#252F3D", mb: 2 }}
+                      sx={{ fontWeight: "bold", mb: 2 }}
                     >
                       Password
                     </FormLabel>
@@ -329,13 +323,12 @@ export default function Form() {
                   >
                     <FormLabel
                       component="legend"
-                      sx={{ fontWeight: "bold", color: "#252F3D", mb: 2 }}
+                      sx={{ fontWeight: "bold", mb: 2 }}
                     >
                       Confirm Password
                     </FormLabel>
                     <TextField
                       {...field}
-                      id="outlined-required"
                       label="Confirm Password *"
                       type="password"
                       error={!!errors.confirmPassword}
@@ -351,7 +344,7 @@ export default function Form() {
               <Button
                 variant="outlined"
                 color="secondary"
-                size='large'
+                size="large"
                 sx={{
                   width: "25%",
                   fontWeight: "bold",
@@ -370,7 +363,7 @@ export default function Form() {
               <Button
                 variant="contained"
                 color="primary"
-                size='large'
+                size="large"
                 sx={{
                   color: "white",
                   width: "25%",
